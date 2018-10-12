@@ -24,6 +24,10 @@ public class Model {
 			return catalog;
 		}
 		
+		public int getIterator() {
+			return catalog.size();
+		}
+		
 		public int addBook(Book b) {
 			catalog.add(b);
 			SaveToFile(catalog);
