@@ -11,19 +11,13 @@ import { BookService } from '../book.service';
 export class BooksComponent implements OnInit {
 
 	books: Book[];
-  helloThere: string;
 
  	constructor(private bookService: BookService) { }
 
  	ngOnInit() {
  		this.getBooks();
-    // this.beGreeted();
  	}
 
-  // beGreeted(): void {
-  //   this.bookService.getGreeting()
-  //   .subscribe(greeting => this.helloThere = greeting);
-  // }
 
  	getBooks(): void {
  		this.bookService.getBooks()
@@ -37,13 +31,6 @@ export class BooksComponent implements OnInit {
  				this.books.push(book);
  			});
  	}
-
-  // add(): void {
- 	// 	this.bookService.addBook()
- 	// 		.subscribe(book => {
-  //       console.log(book);
- 	// 		});
- 	// }
 
  	delete(book: Book): void {
  		this.books = this.books.filter(h => h !== book);
