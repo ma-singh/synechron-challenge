@@ -43,17 +43,6 @@ export class BookService {
 			);
 	}
 
-	// addBook(): Observable<any> {
-	// 	//console.log(book);
-	// 	return this.http.post(
-	// 		'http://localhost:8080/books/add?name=storybook&author=mr%20writer&isbn=987452&publishDate=2006&category=nonfiction&count=3',
-	// 		httpOptions)
-	// 		.pipe(
-	// 			tap(() => console.log('POST successful')),
-	// 			catchError(this.handleError<Book>('addBook'))
-	// 		);
-	// }
-
 	deleteBook(book: Book): Observable<Book> {
 		const catalogUrl = 'http://localhost:8080/delete';
 		const target = 1;
