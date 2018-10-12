@@ -2,18 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { Router } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
+import { FormComponent } from './books/form/form.component';
+
 import { UiModule } from './ui/ui.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BooksComponent
+    BooksComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    AppRoutingModule,
     UiModule
   ],
   providers: [],
