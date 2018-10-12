@@ -1,0 +1,8 @@
+.fa-terminal, .fa-github {
+  font-family: sans-serif, 'FontAwesome'!important;
+  font-style: normal;
+}
+
+a:hover {
+  text-decoration: none;
+}

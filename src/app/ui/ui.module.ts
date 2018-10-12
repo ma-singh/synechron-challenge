@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     CommonModule
   ],
-  declarations: [LayoutComponent, FooterComponent]
+  declarations: [LayoutComponent, FooterComponent],
+  exports: [LayoutComponent]
 })
 export class UiModule { }
