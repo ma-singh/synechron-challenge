@@ -16,8 +16,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 @RestController
 public class Controller {
 
-    private final AtomicLong counter = new AtomicLong();
-    private final Library books = new Library(); 
+    private final Library books = new Library();
+    private final int count = books.getIterator();
+    private final AtomicLong counter = new AtomicLong(count);
   
     @RequestMapping("/initialize")
     public ArrayList<Book> init() {
