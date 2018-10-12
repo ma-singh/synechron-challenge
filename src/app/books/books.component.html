@@ -1,0 +1,44 @@
+<h1 class="text-center">Catalog</h1>
+<!--<h2>{{ helloThere.content }}</h2>-->
+<div class="container-fluid table-responsive">
+	<table class="table table-hover">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Title</th>
+				<th scope="col">Author</th>
+				<th scope="col">Genre</th>
+				<th scope="col">Year Published</th>
+				<th scope="col">Inventory</th>
+				<th scope="col">Issued</th>
+				<th scope="col">ISBN</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let book of books">
+				<th>{{ book.name }}</th>
+				<td>{{ book.author }}</td>
+				<td>{{ book.category }}</td>
+				<td>{{ book.publishDate }}</td>
+				<td>{{ book.count }}</td>
+				<td>{{ book.issued }}</td>
+				<td>{{ book.isbn }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<button class="delete col-2" title="delete hero" (click)="delete(book)">
+	x
+</button>
+
+<button type="button" class="col-2 btn btn-primary" (click)="add(
+	{
+		'name': 'Storybook',
+		'author': 'Mr. Writer',
+		'isbn': '98234758',
+		'publishDate': '2006',
+		'category': 'Nonfiction',
+		'count': 3
+	})">
+  Add Book
+</button>
