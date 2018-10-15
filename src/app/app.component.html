@@ -1,5 +1,6 @@
 <app-layout>
   <app-books></app-books>
-  <a [routerLink]="[{ outlets: { popup: ['add'] } }]">Add</a>
+  <a class="btn btn-primary" [routerLink]="[{ outlets: { popup: ['add'] } }]">Add</a>
+  <hr />
   <router-outlet name="popup"></router-outlet>
 </app-layout>
