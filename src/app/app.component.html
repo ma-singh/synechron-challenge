@@ -1,6 +1,5 @@
 <app-layout>
   <app-books></app-books>
+  <a [routerLink]="[{ outlets: { popup: ['add'] } }]">Add</a>
+  <router-outlet name="popup"></router-outlet>
 </app-layout>
-<a [routerLink]="[{ outlets: { popup: ['add'] } }]">Add</a>
-
-<router-outlet name="popup"></router-outlet>

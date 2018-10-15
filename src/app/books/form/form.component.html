@@ -1,27 +1,27 @@
 <form class="container-fluid">
-	<h1 class="text-center">Book Information</h1>
-	<div class="form-group offset-3 justify-content-center">
+	<h2>Book Information</h2>
+	<div class="form-group justify-content-center">
 		<label for="bookTitle">Title</label>
 		<input type="text" class="form-control col-8" id="bookTitle" />
 	</div>
-	<div class="form-row justify-content-center">
-		<div class="form-group col-3">
+	<div class="form-row">
+		<div class="form-group col-4">
 			<label for="authorName">Author</label>
 			<input type="text" class="form-control" id="firstName"  placeholder="First Name" />
 		</div>
-		<div class="form-group col-3">
+		<div class="form-group col-4">
 			<label for="authorName" class="invisible">Last Name</label>
 			<input type="text" class="form-control" id="lastName"  placeholder="Last Name" />
 		</div>
 	</div>
-	<div class="form-row  justify-content-center">
+	<div class="form-row">
 		<div class="form-group col-2">
 			<label for="genre">Genre</label>
 			<input type="text" id="genre" class="form-control" />
 		</div>
 		<div class="form-group col-2">
 			<label for="yearPublished">Year Published</label>
-			<input type="text" id="yearPublished" class="form-control" />
+			<input type="text" id="yearPublished" placeholder="MM/DD/YYYY" class="form-control" />
 		</div>
 		<div class="form-group col-2">
 			<label for="ISBN">ISBN</label>
@@ -29,8 +29,8 @@
 		</div>
 	</div>
 	<div class="form-row">
-		<div class="form-group col-2 offset-3">
-			<label for="bookTotal">Total Books in Inventory</label>
+		<div class="form-group col-2">
+			<label for="bookTotal">Inventory</label>
 			<input type="text" id="bookTotal" class="form-control" />
 		</div>
 		<div class="form-group col-2">
@@ -38,6 +38,6 @@
 			<input type="text" id="issued" class="form-control" />
 		</div>
 	</div>
-	<button type="button" class="btn offset-3 btn-primary">Save</button>
-	<button type="button" class="btn offset-3 btn-primary" (click)="cancel()">Cancel</button>
+	<button type="button" class="btn btn-primary">Save</button>
+	<button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
 </form>
