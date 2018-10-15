@@ -2,6 +2,10 @@ package com.example.demo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Book implements Serializable  {
 	
@@ -11,7 +15,10 @@ public class Book implements Serializable  {
 	String name;
 	String author;
 	String isbn;
-	String publishDate;
+	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="GMT")
+	Date publishDate;
+	
 	String category;
 	int count;
 	int issued;
@@ -25,22 +32,27 @@ public class Book implements Serializable  {
 		private static final long serialVersionUID = 5649188228843612615L;
 		
 		int transactionID;
-		String issueDate;
-		String dueDate;
-		String returnDate;
 		
-		public Transaction(int transactionID, String issueDate) {
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="GMT")
+		Date issueDate;
+		
+		Date dueDate;
+		
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="GMT")
+		Date returnDate;
+		
+		public Transaction(int transactionID, Date issueDate) {
 			this.transactionID = transactionID;
 			this.issueDate = issueDate;
-			this.dueDate = issueDate + 30; //FIX THIS!
+			this.dueDate = nextMonth(issueDate); //FIX THIS!
 			this.returnDate = null;
 		}
 		
-		public void returnBook(String returnDate){
+		public void returnBook(Date returnDate){
 			this.returnDate = returnDate;
 		}
 
-		public String getReturnDate() {
+		public Date getReturnDate() {
 			return returnDate;
 		}
 
@@ -48,17 +60,17 @@ public class Book implements Serializable  {
 			return transactionID;
 		}
 
-		public String getIssueDate() {
+		public Date getIssueDate() {
 			return issueDate;
 		}
 
-		public String getDueDate() {
+		public Date getDueDate() {
 			return dueDate;
 		}
 		
 	}
 	
-	public Book(int bookID, String name, String author, String isbn, String publishDate, String category,
+	public Book(int bookID, String name, String author, String isbn, Date publishDate, String category,
 			int count) {
 		this.bookID = bookID-1;
 		this.name = name;
@@ -74,14 +86,14 @@ public class Book implements Serializable  {
 		this.count = count;
 	}
 	
-	public void issue(String date){
+	public void issue(Date date){
 		Transaction newTrans = new Transaction(transCount, date);
 		issued++;
 		transCount++;
 		transactions.add(newTrans);
 	}
 	
-	public void ret(int trans_id, String date){
+	public void ret(int trans_id, Date date){
 		transactions.get(trans_id).returnBook(date);
 		issued--;
 	}
@@ -102,7 +114,7 @@ public class Book implements Serializable  {
 		return isbn;
 	}
 
-	public String getPublishDate() {
+	public Date getPublishDate() {
 		return publishDate;
 	}
 
@@ -121,6 +133,13 @@ public class Book implements Serializable  {
 	public ArrayList<Transaction> getTransactions() {
 		return transactions;
 	}
+	
+	public static Date nextMonth(Date issue) {
+        Calendar dates = Calendar.getInstance();
+        dates.setTime(issue);
+        dates.add(Calendar.MONTH, 1);
+        return dates.getTime();
+    }
 	
 	//REQUESTS
 	//edit DONE
