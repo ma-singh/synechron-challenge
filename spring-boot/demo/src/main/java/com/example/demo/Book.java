@@ -76,12 +76,14 @@ public class Book implements Serializable  {
 	
 	public void issue(String date){
 		Transaction newTrans = new Transaction(transCount, date);
+		issued++;
 		transCount++;
 		transactions.add(newTrans);
 	}
 	
 	public void ret(int trans_id, String date){
 		transactions.get(trans_id).returnBook(date);
+		issued--;
 	}
 
 	public int getBookID() {
