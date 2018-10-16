@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
 import { FormComponent } from './books/form/form.component';
+import { ModalComponent } from './modals/modal.component';
+
+import { ModalService } from './modals/modal.service';
 
 import { UiModule } from './ui/ui.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     BooksComponent,
-    FormComponent
+    FormComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     UiModule
   ],
-  providers: [],
+  providers: [ ModalService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

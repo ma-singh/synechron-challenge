@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Book } from '../book';
 import { BookService } from '../book.service';
+import { ModalService } from '../modals/modal.service';
 
 @Component({
   selector: 'app-books',
@@ -13,12 +14,22 @@ export class BooksComponent implements OnInit {
 	//books: Book[];
   private catalog: Array<Book> = [];
 
- 	constructor(private bookService: BookService) { }
+ 	constructor(
+    private bookService: BookService,
+    private modalService: ModalService
+  ) { }
 
  	ngOnInit() {
  		this.getBooks();
  	}
 
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
 
  	getBooks(): void {
  		this.bookService.getBooks()

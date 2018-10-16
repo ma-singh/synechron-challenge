@@ -11,10 +11,11 @@
 				<th scope="col">Inventory</th>
 				<th scope="col">Issued</th>
 				<th scope="col">ISBN</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let book of catalog; let i=index;" (click)="selectRow(i)">
+			<tr *ngFor="let book of catalog; let i=index;">
 				<th>{{ book.name }}</th>
 				<td>{{ book.author }}</td>
 				<td>{{ book.category }}</td>
@@ -22,11 +23,17 @@
 				<td>{{ book.count }}</td>
 				<td>{{ book.issued }}</td>
 				<td>{{ book.isbn }}</td>
+				<td>
+					<button class="btn btn-outline-danger" title="delete book" (click)="selectRow(i)">
+						Delete Book
+					</button>
 			</tr>
 		</tbody>
 	</table>
 </div>
-
-<button class="btn btn-danger" title="delete book" (click)="delete(book)">
-	Delete Book
-</button>
+<button (click)="openModal('custom-modal-1')">Open</button>
+<book-modal id="custom-modal-1">
+    <h1>A Custom Modal!</h1>
+    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+    <button (click)="closeModal('custom-modal-1');">Close</button>
+</book-modal>
