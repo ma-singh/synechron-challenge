@@ -16,8 +16,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 @RestController
 public class Controller {
 
-    private final AtomicLong counter = new AtomicLong();
-    private final Library books = new Library(); 
+    private final Library books = new Library();
+    private final int count = books.getIterator();
+    private final AtomicLong counter = new AtomicLong(count);
   
     @RequestMapping("/initialize")
     public ArrayList<Book> init() {
@@ -37,12 +38,13 @@ public class Controller {
         return set;
     }
     
+    /*
     @RequestMapping("/test/edit")
     public int edit(@RequestParam(value="id", defaultValue="0") int id, 
     		@RequestParam(value="count", defaultValue="0") int count) {
     	int status = books.editBook(id,count);
         return status;
-    }
+    }*/
     
     @RequestMapping("/books/edit")
     public int edit(@RequestBody ObjectNode json) {
@@ -58,6 +60,7 @@ public class Controller {
         return status;
     }
     
+    /*
     @RequestMapping("/test/add")
     public int books(@RequestParam(value="name", defaultValue="Unknown") String name,
     		@RequestParam(value="author", defaultValue="Unknown") String author,
@@ -69,7 +72,7 @@ public class Controller {
     	Book book = new Book((int) counter.incrementAndGet(), name, author, isbn, publishDate, category, count);
     	books.addBook(book);
         return 1;
-    }
+    }*/
     
     @RequestMapping("/books/add")
     public int add(@RequestBody ObjectNode json){ 

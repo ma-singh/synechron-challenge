@@ -24,6 +24,10 @@ public class Model {
 			return catalog;
 		}
 		
+		public int getIterator() {
+			return catalog.size();
+		}
+		
 		public int addBook(Book b) {
 			catalog.add(b);
 			SaveToFile(catalog);
@@ -69,7 +73,8 @@ public class Model {
 		public int returnBook(int BookId, int TransId, String date){
 			Transaction t = catalog.get(BookId).getTransactions().get(TransId);
 			if(t.getReturnDate() == null){
-				catalog.get(BookId).getTransactions().get(TransId).returnBook(date);
+				catalog.get(BookId).ret(TransId, date);
+				//catalog.get(BookId).getTransactions().get(TransId).returnBook(date);
 				SaveToFile(catalog);
 				return 1;
 			}
