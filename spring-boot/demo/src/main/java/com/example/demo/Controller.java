@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.format.annotation.DateTimeFormat;
+//import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +45,7 @@ public class Controller {
     @RequestMapping("/books/edit")
     public int edit(@RequestBody ObjectNode json) {
     	int id = json.get("id").asInt();
-    	int count = json.get("id").asInt();
+    	int count = json.get("count").asInt();
     	int status = books.editBook(id,count);
         return status;
     }
@@ -80,17 +80,35 @@ public class Controller {
         return book;
     }
     
-    @RequestMapping("/books/issue")
-    public int delete(@RequestParam(value="id", defaultValue="0") int id,
+    /*@RequestMapping("/books/issue")
+    public int issue(@RequestParam(value="id", defaultValue="0") int id,
     		@RequestParam(value="date", defaultValue="0") @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
+    	int status = books.issueBook(id, date);
+        return status;
+    }*/
+    
+    @RequestMapping("/books/issue")
+    public int issue(@RequestBody ObjectNode json) throws Exception{
+    	int id = json.get("id").asInt();
+    	String std = json.get("publishDate").asText();
+    	Date date = new SimpleDateFormat("dd/MM/yyyy").parse(std); 
     	int status = books.issueBook(id, date);
         return status;
     }
     
-    @RequestMapping("/books/{id}/transacts/return")
-    public int delete(@PathVariable("id") int bookId,
+    /*@RequestMapping("/books/{id}/transacts/return")
+    public int ret(@PathVariable("id") int bookId,
     		@RequestParam(value="id", defaultValue="0") int transId,
     		@RequestParam(value="date", defaultValue="0") @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
+    	int status = books.returnBook(bookId, transId, date);
+        return status;
+    }*/
+    
+    @RequestMapping("/books/{id}/transacts/return")
+    public int ret(@PathVariable("id") int bookId, @RequestBody ObjectNode json) throws Exception{
+    	int transId = json.get("id").asInt();
+    	String std = json.get("publishDate").asText();
+    	Date date = new SimpleDateFormat("dd/MM/yyyy").parse(std);
     	int status = books.returnBook(bookId, transId, date);
         return status;
     }
