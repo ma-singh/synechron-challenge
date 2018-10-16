@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.example.demo.Book.Transaction;
 
@@ -58,7 +59,7 @@ public class Model {
 			}
 		}
 		
-		public int issueBook(int BookId, String date){
+		public int issueBook(int BookId, Date date){
 			Book b = catalog.get(BookId);
 			if(b.getCount() > b.getIssued()){
 				catalog.get(BookId).issue(date);
@@ -70,7 +71,7 @@ public class Model {
 			}
 		}	
 		
-		public int returnBook(int BookId, int TransId, String date){
+		public int returnBook(int BookId, int TransId, Date date){
 			Transaction t = catalog.get(BookId).getTransactions().get(TransId);
 			if(t.getReturnDate() == null){
 				catalog.get(BookId).ret(TransId, date);
