@@ -10,7 +10,8 @@ import { BookService } from '../book.service';
 })
 export class BooksComponent implements OnInit {
 
-	books: Book[];
+	//books: Book[];
+  private catalog: Array<Book> = [];
 
  	constructor(private bookService: BookService) { }
 
@@ -21,14 +22,15 @@ export class BooksComponent implements OnInit {
 
  	getBooks(): void {
  		this.bookService.getBooks()
- 		.subscribe(books => this.books = books);
+ 		//.subscribe(books => this.books = books);
+    .subscribe(books => this.catalog = books);
  	}
 
  	add(book: Object): void {
  		this.bookService.addBook(book as Book)
  			.subscribe(book => {
-        console.log(book);
- 				this.books.push(book);
+ 				//this.catalog.push(book);
+        console.log('yay we added a book, but did we update our view?');
  			});
  	}
 

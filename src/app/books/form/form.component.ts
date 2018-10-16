@@ -32,8 +32,9 @@ export class FormComponent implements OnInit {
 
     // make sure you call getBooks first so you can properly add to the local array before you access the API
     this.catalog.getBooks();
+    this.catalog.catalog.push(this.bookModel);
     this.catalog.add(this.bookModel);
-    
+
     // close the form and change the url back to default path
     this.closeForm();
     this.router.navigateByUrl('/');
