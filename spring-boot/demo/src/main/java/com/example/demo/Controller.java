@@ -1,9 +1,12 @@
 package com.example.demo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +25,9 @@ public class Controller {
   
     @RequestMapping("/initialize")
     public ArrayList<Book> init() {
-    	Book b1 = new Book((int) counter.incrementAndGet(), "Novel", "RP", "12345", "2008", "Sci-Fi", 5);
-    	Book b2 = new Book((int) counter.incrementAndGet(), "Story", "PR", "67889", "2012", "Fantasy", 3);
+    	Date today = new Date();
+    	Book b1 = new Book((int) counter.incrementAndGet(), "Novel", "RP", "12345", today, "Sci-Fi", 5);
+    	Book b2 = new Book((int) counter.incrementAndGet(), "Story", "PR", "67889", today, "Fantasy", 3);
     	books.addBook(b1);
     	books.addBook(b2);
     	ArrayList<Book> set = books.getCatalog();
@@ -38,14 +42,6 @@ public class Controller {
         return set;
     }
     
-    /*
-    @RequestMapping("/test/edit")
-    public int edit(@RequestParam(value="id", defaultValue="0") int id, 
-    		@RequestParam(value="count", defaultValue="0") int count) {
-    	int status = books.editBook(id,count);
-        return status;
-    }*/
-    
     @RequestMapping("/books/edit")
     public int edit(@RequestBody ObjectNode json) {
     	int id = json.get("id").asInt();
@@ -59,27 +55,16 @@ public class Controller {
     	int status = books.deleteBook(id);
         return status;
     }
-    
-    /*
-    @RequestMapping("/test/add")
-    public int books(@RequestParam(value="name", defaultValue="Unknown") String name,
-    		@RequestParam(value="author", defaultValue="Unknown") String author,
-    		@RequestParam(value="isbn", defaultValue="Unknown") String isbn,
-    		@RequestParam(value="publishdate", defaultValue="Unknown") String publishDate,
-    		@RequestParam(value="category", defaultValue="Unknown") String category,
-    		@RequestParam(value="count", defaultValue="Unknown") int count) {
-    	
-    	Book book = new Book((int) counter.incrementAndGet(), name, author, isbn, publishDate, category, count);
-    	books.addBook(book);
-        return 1;
-    }*/
-    
+      
     @RequestMapping("/books/add")
-    public int add(@RequestBody ObjectNode json){ 
+    public int add(@RequestBody ObjectNode json) throws Exception{ 
     	String name = json.get("name").asText();
     	String author = json.get("author").asText();
     	String isbn = json.get("isbn").asText();
-    	String publishDate = json.get("publishDate").asText();
+    	
+    	String std = json.get("publishDate").asText();
+    	Date publishDate = new SimpleDateFormat("dd/MM/yyyy").parse(std); 
+    	
     	String category = json.get("category").asText();
     	int count = json.get("count").asInt();
     	
@@ -97,7 +82,7 @@ public class Controller {
     
     @RequestMapping("/books/issue")
     public int delete(@RequestParam(value="id", defaultValue="0") int id,
-    		@RequestParam(value="date", defaultValue="0") String date) {
+    		@RequestParam(value="date", defaultValue="0") @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
     	int status = books.issueBook(id, date);
         return status;
     }
@@ -105,7 +90,7 @@ public class Controller {
     @RequestMapping("/books/{id}/transacts/return")
     public int delete(@PathVariable("id") int bookId,
     		@RequestParam(value="id", defaultValue="0") int transId,
-    		@RequestParam(value="date", defaultValue="0") String date) {
+    		@RequestParam(value="date", defaultValue="0") @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
     	int status = books.returnBook(bookId, transId, date);
         return status;
     }
