@@ -1,9 +1,10 @@
 export class Book {
-	id: number;
-	name: string;
-	author: string;
-	isbn: string;
-	publishDate: string;
-	category: string;
-	count: number;
+	constructor (
+		private name: string,
+		private author: string,
+		private isbn: string,
+		private publishDate: string,
+		private category: string,
+		private count: number
+	)
 }

@@ -1,7 +1,7 @@
 <h1 class="text-center">Catalog</h1>
 <!--<h2>{{ helloThere.content }}</h2>-->
 <div class="table-responsive">
-	<table class="table table-hover">
+	<table #bookCatalog class="table table-hover">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Title</th>
@@ -14,7 +14,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let book of books">
+			<tr *ngFor="let book of catalog">
 				<th>{{ book.name }}</th>
 				<td>{{ book.author }}</td>
 				<td>{{ book.category }}</td>
@@ -27,18 +27,6 @@
 	</table>
 </div>
 
-<button class="delete col-2" title="delete hero" (click)="delete(book)">
-	x
-</button>
-
-<button type="button" class="col-2 btn btn-primary" (click)="add(
-	{
-		'name': 'Storybook',
-		'author': 'Mr. Writer',
-		'isbn': '98234758',
-		'publishDate': '2006',
-		'category': 'Nonfiction',
-		'count': 3
-	})">
-  Add Book
+<button class="btn btn-danger" title="delete book" (click)="delete(book)">
+	Delete Book
 </button>

@@ -1,0 +1,39 @@
+<form #bookForm="ngForm" class="container-fluid" novalidate (ngSubmit)="onSubmit()">
+	<h2>Book Information</h2>
+	<div class="form-group justify-content-center">
+		<label for="bookTitle">Title</label>
+		<input type="text" class="form-control col-md-8 col-lg-6" #name="ngModel" name="name" id="bookTitle" [(ngModel)]= "bookModel.name" />
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-4 col-lg-3">
+			<label for="authorName">Author</label>
+			<input type="text" class="form-control" id="firstName"  name="authorFirst" placeholder="First Name" [(ngModel)]="bookModel.authorFirst" />
+		</div>
+		<div class="form-group col-md-4 col-lg-3">
+			<label for="authorName" class="invisible">Last Name</label>
+			<input type="text" class="form-control" id="lastName"  name="authorLast" placeholder="Last Name" [(ngModel)]="bookModel.authorLast" />
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-lg-2 col-md-3 col-sm-4">
+			<label for="genre">Genre</label>
+			<input type="text" id="genre" #category="ngModel" name="category" class="form-control" [(ngModel)]="bookModel.category" />
+		</div>
+		<div class="form-group col-lg-2 col-md-3 col-sm-4 col-6">
+			<label for="yearPublished">Year Published</label>
+			<input type="year" id="yearPublished" #publishDate="ngModel" name="publishDate" class="form-control" [(ngModel)]="bookModel.publishDate" />
+		</div>
+		<div class="form-group col-lg-2 col-md-3 col-sm-4 col-6">
+			<label for="ISBN">ISBN</label>
+			<input type="text" id="ISBN" #isbn="ngModel" name="isbn" class="form-control" [(ngModel)]="bookModel.isbn" />
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-6 col-sm-3 col-md-2">
+			<label for="bookTotal">Inventory</label>
+			<input type="text" id="bookTotal" name="count" class="form-control" [(ngModel)]="bookModel.count" />
+		</div>
+	</div>
+	<button type="submit" class="btn btn-primary">Save</button>
+	<button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+</form>
