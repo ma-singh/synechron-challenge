@@ -43,16 +43,28 @@ export class BookService {
 			);
 	}
 
-	deleteBook(book: Book): Observable<Book> {
-		const catalogUrl = 'http://localhost:8080/delete';
-		const target = 1;
+	deleteBook(selection): Observable<any> {
+		const target = selection;
+		const catalogUrl = `http://localhost:8080/books/delete?id=${target}`;
 
-		return this.http.delete<Book>('http://localhost:8080/books/delete?id=1', httpOptions)
+		return this.http.delete<Book>(catalogUrl, httpOptions)
 			.pipe(
-				tap(_ => console.log(`Deleted hero at index: ${target}`)),
-				catchError(this.handleError<Book>('deleteHero'))
+				tap(
+					_ => console.log(`Deleted hero at index: ${target}`)),
+					catchError(this.handleError<Book>('deleteHero'))
 			);
 	}
+
+	// deleteBook(book: Book): Observable<Book> {
+	// 	const catalogUrl = 'http://localhost:8080/delete';
+	// 	const target = 1;
+	//
+	// 	return this.http.delete<Book>('http://localhost:8080/books/delete?id=1', httpOptions)
+	// 		.pipe(
+	// 			tap(_ => console.log(`Deleted hero at index: ${target}`)),
+	// 			catchError(this.handleError<Book>('deleteHero'))
+	// 		);
+	// }
 
 	private handleError<T> (operation = 'operation', result?:T) {
 		return (error: any): Observable<T> => {

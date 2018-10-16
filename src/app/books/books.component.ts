@@ -23,7 +23,7 @@ export class BooksComponent implements OnInit {
  	getBooks(): void {
  		this.bookService.getBooks()
  		//.subscribe(books => this.books = books);
-    .subscribe(books => this.catalog = books);
+    .subscribe(catalog => this.catalog = catalog);
  	}
 
  	add(book: Object): void {
@@ -34,9 +34,24 @@ export class BooksComponent implements OnInit {
  			});
  	}
 
- 	delete(book: Book): void {
- 		this.books = this.books.filter(h => h !== book);
- 		this.bookService.deleteBook(book).subscribe();
- 	}
+ 	// delete(book: Book): void {
+ 	// 	this.catalog = this.catalog.filter(h => h !== book);
+ 	// 	this.bookService.deleteBook(book).subscribe();
+ 	// }
+
+  selectRow(selection) {
+    console.log('Row ' + selection + ' selected.');
+    console.log(this.catalog[selection]);
+
+    this.delete(selection);
+  }
+
+  delete(selectedBook) {
+    this.bookService.deleteBook(selectedBook)
+      .subscribe(
+        this.catalog.splice(selectedBook, 1);
+        console.log('Removed a book from the catalog');
+      )
+  }
 
 }

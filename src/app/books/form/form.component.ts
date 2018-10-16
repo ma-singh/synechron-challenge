@@ -17,7 +17,7 @@ export class FormComponent implements OnInit {
   bookModel = new Book();
 
   constructor(
-    private router: Router,
+    private router: Router;
     private catalog: BooksComponent;
   ) { }
 

@@ -14,7 +14,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let book of catalog">
+			<tr *ngFor="let book of catalog; let i=index;" (click)="selectRow(i)">
 				<th>{{ book.name }}</th>
 				<td>{{ book.author }}</td>
 				<td>{{ book.category }}</td>
