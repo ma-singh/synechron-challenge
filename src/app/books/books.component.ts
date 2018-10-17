@@ -41,7 +41,7 @@ export class BooksComponent implements OnInit {
 
  	getBooks(): void {
  		this.bookService.getBooks()
- 		//.subscribe(books => this.books = books);
+    // set the catalog array to populate with the data from the API
     .subscribe(catalog => this.catalog = catalog);
  	}
 
@@ -56,6 +56,7 @@ export class BooksComponent implements OnInit {
   selectRow(selection) {
     console.log('Row ' + selection + ' selected.');
     console.log(this.catalog[selection]);
+    this.selectedBook = this.catalog[selection];
 
     this.openModal('custom-modal-1');
   }

@@ -34,6 +34,10 @@
 </div>
 <button (click)="openModal('custom-modal-1');">Open</button>
 <book-modal id="custom-modal-1">
-    <h1>A Custom Modal!</h1>
+    <h2>{{ selectedBook.name }}</h2>
+		<p><b>Author</b>: {{ selectedBook.author }}</p>
+		<p>{{ selectedBook.category }}</p>
+		<p>{{ selectedBook.publishDate }}</p>
+		<p>{{ selectedBook.isbn }}</p>
     <button (click)="closeModal('custom-modal-1');">Close</button>
 </book-modal>
