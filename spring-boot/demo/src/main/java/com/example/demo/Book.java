@@ -16,7 +16,7 @@ public class Book implements Serializable  {
 	String author;
 	String isbn;
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="GMT")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	Date publishDate;
 	
 	String category;
@@ -33,12 +33,12 @@ public class Book implements Serializable  {
 		
 		int transactionID;
 		
-		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="GMT")
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 		Date issueDate;
 		
 		Date dueDate;
 		
-		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="GMT")
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 		Date returnDate;
 		
 		public Transaction(int transactionID, Date issueDate) {

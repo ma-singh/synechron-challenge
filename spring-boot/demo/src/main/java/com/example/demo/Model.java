@@ -11,7 +11,8 @@ import com.example.demo.Book.Transaction;
 
 public class Model {
 	
-	private static final String filepath="src\\main\\resources\\lib";
+	//private static final String filepath="src\\main\\resources\\lib";
+	private static final String filepath2="src/main/resources/lib";
 	
 	static class Library{
 		
@@ -87,7 +88,7 @@ public class Model {
 	
     public static void SaveToFile (Object save) {
         try {
-        	FileOutputStream file = new FileOutputStream(filepath);
+        	FileOutputStream file = new FileOutputStream(filepath2);
         	ObjectOutputStream stream = new ObjectOutputStream(file);
         	stream.writeObject(save);
         	stream.close();
@@ -99,7 +100,7 @@ public class Model {
    
     public static ArrayList<Book> ReadCatalog() {
     	try {
-    		FileInputStream file = new FileInputStream(filepath);
+    		FileInputStream file = new FileInputStream(filepath2);
     		ObjectInputStream stream = new ObjectInputStream(file);
     		@SuppressWarnings("unchecked")
 			ArrayList<Book> lib = (ArrayList<Book>) stream.readObject(); 
