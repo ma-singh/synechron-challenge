@@ -12,7 +12,7 @@ import { ModalService } from './modal.service';
         </div>
         <div class="book-modal-background"></div>
         `,
-    styleUrls: ['./modal.scss']
+    styleUrls: ['./modal.css']
 })
 
 export class ModalComponent implements OnInit, OnDestroy {

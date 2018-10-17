@@ -7,7 +7,7 @@
 				<th scope="col">Title</th>
 				<th scope="col">Author</th>
 				<th scope="col">Genre</th>
-				<th scope="col">Year Published</th>
+				<th scope="col">Published</th>
 				<th scope="col">Inventory</th>
 				<th scope="col">Issued</th>
 				<th scope="col">ISBN</th>
@@ -15,7 +15,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let book of catalog; let i=index;">
+			<tr *ngFor="let book of catalog; let i=index;" (click)="selectRow(i)">
 				<th>{{ book.name }}</th>
 				<td>{{ book.author }}</td>
 				<td>{{ book.category }}</td>
@@ -24,16 +24,34 @@
 				<td>{{ book.issued }}</td>
 				<td>{{ book.isbn }}</td>
 				<td>
-					<button class="btn btn-outline-danger" title="delete book" (click)="selectRow(i)">
+					<button class="btn btn-outline-danger" title="delete book" (click)="delete(i)" [disabled]="book.issued > 0">
 						Delete Book
 					</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>
 </div>
-<button (click)="openModal('custom-modal-1')">Open</button>
+<button (click)="openModal('custom-modal-1');">Open</button>
 <book-modal id="custom-modal-1">
-    <h1>A Custom Modal!</h1>
-    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
-    <button (click)="closeModal('custom-modal-1');">Close</button>
+	<div class="modal-header">
+    <h3>{{ selectedBook.name }}</h3>
+	</div>
+	<div class="modal-body">
+		<p><b>Author</b>: {{ selectedBook.author }}</p>
+		<p><b>Genre</b>: {{ selectedBook.category }}</p>
+		<p><b>Published</b>: {{ selectedBook.publishDate }}</p>
+		<p><b>ISBN</b>: {{ selectedBook.isbn }}</p>
+		<p><b>Inventory</b>: {{ selectedBook.count }}</p>
+		<p><b>Issued</b>: {{ selectedBook.issued }}</p>
+		<p *ngIf="selectedBook.transactions.length > 0"><b>Transactions</b>:</p>
+		<ul>
+			<li *ngFor="let data of selectedBook.transactions">
+				<p><small>Issued: {{ data.issueDate }}</small> | <small>Due: {{ data.dueDate }}</small></p>
+			</li>
+		</ul>
+	</div>
+		<div class="modal-footer">
+    	<button (click)="closeModal('custom-modal-1');">Close</button>
+		</div>
 </book-modal>

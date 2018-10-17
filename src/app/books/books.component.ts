@@ -13,6 +13,8 @@ export class BooksComponent implements OnInit {
 
 	//books: Book[];
   private catalog: Array<Book> = [];
+  // private toggled: true;
+  private selectedBook;
 
  	constructor(
     private bookService: BookService,
@@ -22,6 +24,12 @@ export class BooksComponent implements OnInit {
  	ngOnInit() {
  		this.getBooks();
  	}
+
+  // toggle(selection) {
+  //   this.toggled = !this.toggled;
+  //   this.selectedBook = this.catalog[selection];
+  //   console.log(this.selectedBook);
+  // }
 
   openModal(id: string) {
     this.modalService.open(id);
@@ -33,7 +41,7 @@ export class BooksComponent implements OnInit {
 
  	getBooks(): void {
  		this.bookService.getBooks()
- 		//.subscribe(books => this.books = books);
+    // set the catalog array to populate with the data from the API
     .subscribe(catalog => this.catalog = catalog);
  	}
 
@@ -45,16 +53,11 @@ export class BooksComponent implements OnInit {
  			});
  	}
 
- 	// delete(book: Book): void {
- 	// 	this.catalog = this.catalog.filter(h => h !== book);
- 	// 	this.bookService.deleteBook(book).subscribe();
- 	// }
-
   selectRow(selection) {
     console.log('Row ' + selection + ' selected.');
     console.log(this.catalog[selection]);
+    this.selectedBook = this.catalog[selection];
 
-    //this.delete(selection);
     this.openModal('custom-modal-1');
   }
 

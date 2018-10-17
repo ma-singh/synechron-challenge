@@ -63,7 +63,7 @@ public class Controller {
     	String isbn = json.get("isbn").asText();
     	
     	String std = json.get("publishDate").asText();
-    	Date publishDate = new SimpleDateFormat("dd/MM/yyyy").parse(std); 
+    	Date publishDate = new SimpleDateFormat("yyyy-MM-dd").parse(std); 
     	
     	String category = json.get("category").asText();
     	int count = json.get("count").asInt();
@@ -90,8 +90,8 @@ public class Controller {
     @RequestMapping("/books/issue")
     public int issue(@RequestBody ObjectNode json) throws Exception{
     	int id = json.get("id").asInt();
-    	String std = json.get("publishDate").asText();
-    	Date date = new SimpleDateFormat("dd/MM/yyyy").parse(std); 
+    	String std = json.get("issueDate").asText();
+    	Date date = new SimpleDateFormat("yyyy-MM-dd").parse(std); 
     	int status = books.issueBook(id, date);
         return status;
     }
@@ -107,8 +107,8 @@ public class Controller {
     @RequestMapping("/books/{id}/transacts/return")
     public int ret(@PathVariable("id") int bookId, @RequestBody ObjectNode json) throws Exception{
     	int transId = json.get("id").asInt();
-    	String std = json.get("publishDate").asText();
-    	Date date = new SimpleDateFormat("dd/MM/yyyy").parse(std);
+    	String std = json.get("returnDate").asText();
+    	Date date = new SimpleDateFormat("yyyy-MM-dd").parse(std);
     	int status = books.returnBook(bookId, transId, date);
         return status;
     }
