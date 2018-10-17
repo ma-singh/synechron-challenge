@@ -14,6 +14,7 @@ export class BooksComponent implements OnInit {
 	//books: Book[];
   private catalog: Array<Book> = [];
   private toggled: true;
+  private selectedBook;
 
  	constructor(
     private bookService: BookService,
@@ -24,8 +25,10 @@ export class BooksComponent implements OnInit {
  		this.getBooks();
  	}
 
-  toggle() {
+  toggle(selection) {
     this.toggled = !this.toggled;
+    this.selectedBook = this.catalog[selection];
+    console.log(this.selectedBook);
   }
 
   openModal(id: string) {
@@ -50,16 +53,10 @@ export class BooksComponent implements OnInit {
  			});
  	}
 
- 	// delete(book: Book): void {
- 	// 	this.catalog = this.catalog.filter(h => h !== book);
- 	// 	this.bookService.deleteBook(book).subscribe();
- 	// }
-
   selectRow(selection) {
     console.log('Row ' + selection + ' selected.');
     console.log(this.catalog[selection]);
 
-    //this.delete(selection);
     this.openModal('custom-modal-1');
   }
 
