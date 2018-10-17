@@ -54,13 +54,14 @@ export class BooksComponent implements OnInit {
     console.log('Row ' + selection + ' selected.');
     console.log(this.catalog[selection]);
 
-    this.delete(selection);
+    //this.delete(selection);
+    this.openModal('custom-modal-1');
   }
 
   delete(selectedBook) {
     this.bookService.deleteBook(selectedBook)
       .subscribe(
-        this.catalog.splice(selectedBook, 1);
+        this.catalog.splice(selectedBook, 1),
         console.log('Removed a book from the catalog');
       )
   }
