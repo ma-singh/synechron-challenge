@@ -4,14 +4,15 @@ import { ModalService } from './modal.service';
 
 @Component({
     selector: 'book-modal',
-    template:
-        `<div class="book-modal">
+    template:`
+        <div class="book-modal">
             <div class="book-modal-body">
                 <ng-content></ng-content>
             </div>
         </div>
-        <div class="book-modal-background"></div>`,
-    styleUrls: ['./modal.css']
+        <div class="book-modal-background"></div>
+        `,
+    styleUrls: ['./modal.scss']
 })
 
 export class ModalComponent implements OnInit, OnDestroy {
