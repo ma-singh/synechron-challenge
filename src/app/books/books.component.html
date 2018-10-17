@@ -42,7 +42,15 @@
 		<p><b>Genre</b>: {{ selectedBook.category }}</p>
 		<p><b>Published</b>: {{ selectedBook.publishDate }}</p>
 		<p><b>ISBN</b>: {{ selectedBook.isbn }}</p>
-		<p><b>Inventory</b>: {{ selectedBook.count }}</p>
+		<hr />
+		<div class="form-inline">
+			<div class="form-group">
+				<b><label class="form-label" for="bookTotal">Inventory</label></b>
+				<div class="col-1 text-right">
+					<input type="text" id="bookTotal" name="count" class="form-control" [ngModel]="selectedBook.count" />
+				</div>
+			</div>
+		</div>
 		<p><b>Issued</b>: {{ selectedBook.issued }}</p>
 		<p *ngIf="selectedBook.transactions.length > 0"><b>Transactions</b>:</p>
 		<ul>
@@ -52,6 +60,6 @@
 		</ul>
 	</div>
 		<div class="modal-footer">
-    	<button (click)="closeModal('custom-modal-1');">Close</button>
+    	<button class="btn btn-secondary" (click)="closeModal('custom-modal-1');">Close</button>
 		</div>
 </book-modal>

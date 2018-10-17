@@ -36,6 +36,7 @@ public class Book implements Serializable  {
 		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 		Date issueDate;
 		
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 		Date dueDate;
 		
 		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
