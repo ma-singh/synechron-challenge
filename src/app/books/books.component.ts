@@ -13,6 +13,7 @@ export class BooksComponent implements OnInit {
 
 	//books: Book[];
   private catalog: Array<Book> = [];
+  private toggled: true;
 
  	constructor(
     private bookService: BookService,
@@ -22,6 +23,10 @@ export class BooksComponent implements OnInit {
  	ngOnInit() {
  		this.getBooks();
  	}
+
+  toggle() {
+    this.toggled = !this.toggled;
+  }
 
   openModal(id: string) {
     this.modalService.open(id);
