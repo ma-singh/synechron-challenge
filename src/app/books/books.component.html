@@ -24,7 +24,7 @@
 				<td>{{ book.issued }}</td>
 				<td>{{ book.isbn }}</td>
 				<td>
-					<button class="btn btn-outline-danger" title="delete book" (click)="delete(i)">
+					<button class="btn btn-outline-danger" title="delete book" (click)="delete(i)" [disabled]="book.issued > 0">
 						Delete Book
 					</button>
 				</td>
@@ -34,10 +34,24 @@
 </div>
 <button (click)="openModal('custom-modal-1');">Open</button>
 <book-modal id="custom-modal-1">
-    <h2>{{ selectedBook.name }}</h2>
+	<div class="modal-header">
+    <h3>{{ selectedBook.name }}</h3>
+	</div>
+	<div class="modal-body">
 		<p><b>Author</b>: {{ selectedBook.author }}</p>
-		<p>{{ selectedBook.category }}</p>
-		<p>{{ selectedBook.publishDate }}</p>
-		<p>{{ selectedBook.isbn }}</p>
-    <button (click)="closeModal('custom-modal-1');">Close</button>
+		<p><b>Genre</b>: {{ selectedBook.category }}</p>
+		<p><b>Published</b>: {{ selectedBook.publishDate }}</p>
+		<p><b>ISBN</b>: {{ selectedBook.isbn }}</p>
+		<p><b>Inventory</b>: {{ selectedBook.count }}</p>
+		<p><b>Issued</b>: {{ selectedBook.issued }}</p>
+		<p *ngIf="selectedBook.transactions.length > 0"><b>Transactions</b>:</p>
+		<ul>
+			<li *ngFor="let data of selectedBook.transactions">
+				<p><small>Issued: {{ data.issueDate }}</small> | <small>Due: {{ data.dueDate }}</small></p>
+			</li>
+		</ul>
+	</div>
+		<div class="modal-footer">
+    	<button (click)="closeModal('custom-modal-1');">Close</button>
+		</div>
 </book-modal>

@@ -13,7 +13,7 @@ export class BooksComponent implements OnInit {
 
 	//books: Book[];
   private catalog: Array<Book> = [];
-  private toggled: true;
+  // private toggled: true;
   private selectedBook;
 
  	constructor(
@@ -25,11 +25,11 @@ export class BooksComponent implements OnInit {
  		this.getBooks();
  	}
 
-  toggle(selection) {
-    this.toggled = !this.toggled;
-    this.selectedBook = this.catalog[selection];
-    console.log(this.selectedBook);
-  }
+  // toggle(selection) {
+  //   this.toggled = !this.toggled;
+  //   this.selectedBook = this.catalog[selection];
+  //   console.log(this.selectedBook);
+  // }
 
   openModal(id: string) {
     this.modalService.open(id);
