@@ -67,11 +67,16 @@ export class BooksComponent implements OnInit {
       .subscribe(
         this.catalog.splice(selectedBook, 1),
         console.log('Removed a book from the catalog');
-      )
+      );
   }
 
   edit() {
-    console.log(this.selectedBook.count);
+    const targetId = this.selectedBook.bookID);
+    const updatedCount = this.selectedBook.count);
+    this.bookService.editBook(targetId, updatedCount)
+      .subscribe(
+        console.log('Edited Inventory for ' + this.selectedBook.name);
+      );
     this.closeModal('custom-modal-1');
   }
 

@@ -51,7 +51,22 @@ export class BookService {
 			.pipe(
 				tap(
 					_ => console.log(`Deleted hero at index: ${target}`)),
-					catchError(this.handleError<Book>('deleteHero'))
+					catchError(this.handleError<Book>('deleteBook'))
+			);
+	}
+
+	editBook(selection, update): Observable<any> {
+		const target = `{
+			"id": "${selection}",
+			"count": "${update}"
+		}`;
+		const catalogUrl = `http://localhost:8080/books/edit`;
+
+		return this.http.patch(catalogUrl, target, httpOptions)
+			.pipe(
+				tap(
+					_ => console.log(`Updated Inventory count: ${target}`)),
+					catchError(this.handleError<Book>('editBook'))
 			);
 	}
 
