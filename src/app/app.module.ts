@@ -13,7 +13,7 @@ import { ModalComponent } from './modals/modal.component';
 import { ModalService } from './modals/modal.service';
 
 import { UiModule } from './ui/ui.module';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { TransactionsComponent } from './books/transactions/transactions.component';
 
 @NgModule({
@@ -22,7 +22,8 @@ import { TransactionsComponent } from './books/transactions/transactions.compone
     BooksComponent,
     FormComponent,
     ModalComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    routingComponents
   ],
   imports: [
     BrowserModule,

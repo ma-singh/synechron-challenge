@@ -4,6 +4,7 @@
 	<table #bookCatalog class="table table-hover">
 		<thead class="thead-dark">
 			<tr>
+				<th scope="col"></th>
 				<th scope="col">Title</th>
 				<th scope="col">Author</th>
 				<th scope="col">Genre</th>
@@ -16,6 +17,7 @@
 		</thead>
 		<tbody>
 			<tr *ngFor="let book of catalog; let i=index;">
+				<td [class.selected]="isSelected(book)"><span class="badge">{{ book.bookID }}</span></td>
 				<th class="col-md-auto">{{ book.name }}</th>
 				<td>{{ book.author }}</td>
 				<td>{{ book.category }}</td>

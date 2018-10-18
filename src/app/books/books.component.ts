@@ -13,7 +13,6 @@ export class BooksComponent implements OnInit {
 
 	//books: Book[];
   private catalog: Array<Book> = [];
-  // private toggled: true;
   private selectedBook;
 
  	constructor(
