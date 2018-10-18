@@ -1,11 +1,10 @@
-<h3>Transactions</h3>
-<!-- <ul>
-  <li *ngFor="let item of catalog.catalog" [class.selected]="isSelected(item)" (click)="onSelect(item)">
-    <span class="badge">{{ item.bookID }}</span> | {{ item.name }}
-  </li>
-</ul> -->
+<h3>Transactions for {{ catalog.catalog[selectedId].name }}</h3>
 <ul>
-  <li *ngFor="let item of catalog.catalog.transactions">{{ item }}</li>
+  <li *ngFor="let item of catalog.catalog[selectedId].transactions">
+    <p>Issued: {{ item.issueDate }}</p>
+    <p>Due: {{ item.dueDate }}</p>
+    <p>Returned: {{ item.returnDate}}</p>
+  </li>
 </ul>
 
 <button (click)="goBack()">Cancel</button>

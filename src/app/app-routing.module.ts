@@ -13,9 +13,9 @@ const appRoutes: Routes = [
     outlet: 'popup'
   },
   {
-    path: 'transactions',
+    path: ':id',
     component: TransactionsComponent
-  }
+  },
   {
     path: '',
     redirectTo: '/',

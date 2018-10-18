@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 import { Book } from '../book';
 import { BookService } from '../book.service';
 import { ModalService } from '../modals/modal.service';
@@ -12,23 +14,24 @@ import { ModalService } from '../modals/modal.service';
 export class BooksComponent implements OnInit {
 
 	//books: Book[];
+  public selectedId;
   private catalog: Array<Book> = [];
   private selectedBook;
 
  	constructor(
     private bookService: BookService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
  	ngOnInit() {
  		this.getBooks();
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      let id = parseInt(params.get('id'));
+      this.selectedId = id;
+    });
  	}
-
-  // toggle(selection) {
-  //   this.toggled = !this.toggled;
-  //   this.selectedBook = this.catalog[selection];
-  //   console.log(this.selectedBook);
-  // }
 
   openModal(id: string) {
     this.modalService.open(id);
@@ -77,6 +80,15 @@ export class BooksComponent implements OnInit {
         console.log('Edited Inventory for ' + this.selectedBook.name);
       );
     this.closeModal('custom-modal-1');
+  }
+
+  onSelect(book) {
+    console.log(book.bookID);
+    this.router.navigate([book.bookID], { relativeTo: this.route });
+  }
+
+  isSelected(book) {
+    return book.bookID === this.selectedId;
   }
 
 }
