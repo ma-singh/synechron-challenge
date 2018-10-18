@@ -14,13 +14,15 @@ import { ModalService } from './modals/modal.service';
 
 import { UiModule } from './ui/ui.module';
 import { AppRoutingModule } from './app-routing.module';
+import { TransactionsComponent } from './books/transactions/transactions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksComponent,
     FormComponent,
-    ModalComponent
+    ModalComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,
