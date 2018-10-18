@@ -2,6 +2,15 @@ table {
   margin-bottom: 1rem;
 }
 
+th, td {
+  vertical-align: middle;
+}
+
+.fas {
+  font-family: sans-serif, 'FontAwesome'!important;
+  font-style: normal;
+}
+
 #bookTotal {
   width: 3rem;
 }

@@ -15,8 +15,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let book of catalog; let i=index;" (click)="selectRow(i)">
-				<th>{{ book.name }}</th>
+			<tr *ngFor="let book of catalog; let i=index;">
+				<th class="col-md-auto">{{ book.name }}</th>
 				<td>{{ book.author }}</td>
 				<td>{{ book.category }}</td>
 				<td>{{ book.publishDate }}</td>
@@ -24,8 +24,9 @@
 				<td>{{ book.issued }}</td>
 				<td>{{ book.isbn }}</td>
 				<td>
+					<button class="btn btn-outline-primary" title="edit book" (click)="selectRow(i)"><i class="fas fa-edit"></i></button>
 					<button class="btn btn-outline-danger" title="delete book" (click)="delete(i)" [disabled]="book.issued > 0">
-						Delete Book
+						<i class="fas fa-minus-circle"></i>
 					</button>
 				</td>
 			</tr>
@@ -43,19 +44,26 @@
 		<p><b>Published</b>: {{ selectedBook.publishDate }}</p>
 		<p><b>ISBN</b>: {{ selectedBook.isbn }}</p>
 		<hr />
-		<div class="form-inline">
-			<div class="form-group">
-				<b><label class="form-label" for="bookTotal">Inventory</label></b>
-				<div class="col-1 text-right">
-					<input type="text" id="bookTotal" name="count" class="form-control" [ngModel]="selectedBook.count" />
+		<form #editForm="ngForm" novalidate (ngSubmit)="edit()">
+			<div class="form-inline">
+				<div class="form-group">
+					<b><label class="form-label" for="bookTotal">Inventory</label></b>
+					<div class="col-1 text-right">
+						<input type="text" id="bookTotal" #updateCount="ngModel" name="updateCount" class="form-control" [(ngModel)]="selectedBook.count" />
+					</div>
+					<div *ngIf="updateCount.value < selectedBook.issued" class="invalid-feedback alert alert-danger">
+						Inventory count cannot be lower than amount of copies issued
+					</div>
 				</div>
 			</div>
-		</div>
+			<button type="submit" class="btn btn-success" [disabled]="updateCount.value < selectedBook.issued">Edit</button>
+		</form>
 		<p><b>Issued</b>: {{ selectedBook.issued }}</p>
 		<p *ngIf="selectedBook.transactions.length > 0"><b>Transactions</b>:</p>
 		<ul>
 			<li *ngFor="let data of selectedBook.transactions">
 				<p><small>Issued: {{ data.issueDate }}</small> | <small>Due: {{ data.dueDate }}</small></p>
+				<!-- <p>Return Date: {{ data.returnDate }}</p> -->
 			</li>
 		</ul>
 	</div>

@@ -45,21 +45,22 @@ export class BooksComponent implements OnInit {
     .subscribe(catalog => this.catalog = catalog);
  	}
 
+  selectRow(selection) {
+    console.log('Row ' + selection + ' selected.');
+    console.log(this.catalog[selection]);
+    // set selected book to chosen index in catalog array
+    this.selectedBook = this.catalog[selection];
+    // open the modal
+    this.openModal('custom-modal-1');
+  }
+
  	add(book: Object): void {
  		this.bookService.addBook(book as Book)
  			.subscribe(book => {
  				//this.catalog.push(book);
-        console.log('yay we added a book, but did we update our view?');
+        //console.log('yay we added a book, but did we update our view?');
  			});
  	}
-
-  selectRow(selection) {
-    console.log('Row ' + selection + ' selected.');
-    console.log(this.catalog[selection]);
-    this.selectedBook = this.catalog[selection];
-
-    this.openModal('custom-modal-1');
-  }
 
   delete(selectedBook) {
     this.bookService.deleteBook(selectedBook)
@@ -67,6 +68,11 @@ export class BooksComponent implements OnInit {
         this.catalog.splice(selectedBook, 1),
         console.log('Removed a book from the catalog');
       )
+  }
+
+  edit() {
+    console.log(this.selectedBook.count);
+    this.closeModal('custom-modal-1');
   }
 
 }
