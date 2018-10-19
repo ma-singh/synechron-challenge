@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { FormComponent } from './books/form/form.component';
+import { TransactionsComponent } from './books/transactions/transactions.component';
 
 import { PreloadService } from './preload.service';
 
@@ -10,6 +11,10 @@ const appRoutes: Routes = [
     path: 'add',
     component: FormComponent,
     outlet: 'popup'
+  },
+  {
+    path: ':id',
+    component: TransactionsComponent
   },
   {
     path: '',
@@ -34,3 +39,4 @@ const appRoutes: Routes = [
 })
 
 export class AppRoutingModule { }
+export const routingComponents = [ TransactionsComponent ]
